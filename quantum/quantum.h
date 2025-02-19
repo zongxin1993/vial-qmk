@@ -29,7 +29,7 @@
 #endif
 
 #if defined(RGBLIGHT_ENABLE)
-#    include "rgblight.h"
+#    include "rgblight/rgblight.h"
 #endif
 
 #ifdef RGB_MATRIX_ENABLE

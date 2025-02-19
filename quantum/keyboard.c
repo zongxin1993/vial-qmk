@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    include "ps2_mouse.h"
 #endif
 #ifdef RGBLIGHT_ENABLE
-#    include "rgblight.h"
+#    include "rgblight/rgblight.h"
 #endif
 #ifdef LED_MATRIX_ENABLE
 #    include "led_matrix.h"
