@@ -2,21 +2,29 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "os_detection.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        KC_ESC,  KC_1,    KC_2,  KC_3,    KC_4,   KC_5,    KC_6,    XXXXXXX,   KC_7,   KC_8,    KC_9,    KC_0,    KC_MINS,  KC_EQL,  KC_BSPC,  XXXXXXX,
+        QK_GESC, KC_1,    KC_2,  KC_3,    KC_4,   KC_5,    KC_6,    XXXXXXX,   KC_7,   KC_8,    KC_9,    KC_0,    KC_MINS,  KC_EQL,  KC_BSPC,  XXXXXXX,
         KC_TAB,  KC_Q,    KC_W,  KC_E,    KC_R,   KC_T,    KC_Y,    XXXXXXX,   KC_U,   KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC, KC_BSLS,  XXXXXXX,
         KC_A,    KC_S,    KC_D,  KC_F,    KC_G,   XXXXXXX, XXXXXXX, XXXXXXX,   KC_H,   KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT, KC_ENTER, XXXXXXX,
-        KC_LSFT, KC_Z,    KC_X,  KC_C,    KC_V,   KC_B,    XXXXXXX, XXXXXXX,   KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_NO, KC_UP,      KC_NO,
-        KC_LCTL, KC_LGUI, MO(1), KC_LALT, KC_SPC, XXXXXXX, XXXXXXX, XXXXXXX,   KC_APP, KC_RALT, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX,  XXXXXXX
+        KC_LSFT, KC_Z,    KC_X,  KC_C,    KC_V,   KC_B,    XXXXXXX, XXXXXXX,   KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_HOME, KC_UP,    KC_END,
+        KC_LCTL, KC_LGUI, MO(1), KC_LALT, KC_SPC, XXXXXXX, XXXXXXX, XXXXXXX,   MO(2),  KC_APP,  KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX,  XXXXXXX
     ),
     [1] = LAYOUT(
-        KC_TILD, KC_F1,   KC_F2, KC_F3,   KC_F4,  KC_F5,   KC_F6,   XXXXXXX,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,  XXXXXXX,
-        KC_TAB,  KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   KC_NO,   XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_VOLD, KC_VOLU, KC_MUTE, XXXXXXX,
-        KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO,  XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_BRID, KC_BRIU, KC_NO,   XXXXXXX,
-        KC_LSFT, KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   XXXXXXX, XXXXXXX,   KC_NO,  KC_NO,   KC_MPRV, KC_MNXT, KC_MPLY, KC_NO, KC_PGUP, KC_NO,
-        KC_LCTL, KC_LGUI, MO(1), KC_LALT, KC_SPC, XXXXXXX, XXXXXXX, XXXXXXX,   KC_APP, KC_RALT, KC_HOME, KC_PGDN, KC_END,  XXXXXXX, XXXXXXX, XXXXXXX
+        KC_TILD, KC_F1,   KC_F2, KC_F3,   KC_F4,  KC_F5,   KC_F6,   XXXXXXX,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,    KC_F12,  KC_DEL,  XXXXXXX,
+        KC_TAB,  KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   KC_NO,   XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_VOLD,   KC_VOLU, KC_MUTE, XXXXXXX,
+        KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO,  XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_BRID,   KC_BRIU, KC_ENTER,XXXXXXX,
+        KC_LSFT, KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   XXXXXXX, XXXXXXX,   KC_NO,  KC_NO,   KC_MPRV, KC_MNXT, KC_MPLY,   KC_PGUP, KC_UP,   KC_PGDN,
+        KC_LCTL, KC_LGUI, MO(1), KC_LALT, KC_SPC, XXXXXXX, XXXXXXX, XXXXXXX,   MO(2),  KC_APP,  KC_LEFT, KC_DOWN, KC_RIGHT,  XXXXXXX, XXXXXXX, XXXXXXX
+    ),
+    [2] = LAYOUT(
+        KC_GRV,  KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   KC_NO,   XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_NO,   XXXXXXX,
+        KC_TAB,  KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   KC_NO,   XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_NO,   XXXXXXX,
+        KC_NO,   KC_NO,   KC_NO, KC_NO,   KC_NO,  XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_ENTER,XXXXXXX,
+        KC_LSFT, KC_NO,   KC_NO, KC_NO,   KC_NO,  KC_NO,   XXXXXXX, XXXXXXX,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_UP,   KC_NO,
+        KC_LCTL, KC_LGUI, MO(1), KC_LALT, KC_SPC, XXXXXXX, XXXXXXX, XXXXXXX,   MO(2),  KC_APP,  KC_LEFT, KC_DOWN, KC_RIGHT,  XXXXXXX, XXXXXXX, XXXXXXX
     )
 };
 
@@ -76,3 +84,81 @@ led_config_t g_led_config = {
 };
 
 #endif
+
+// static bool IS_MAC = false;
+
+// bool process_detected_host_os_kb(os_variant_t detected_os) {
+//     if (!process_detected_host_os_user(detected_os)) {
+//         return false;
+//     }
+//     switch (detected_os) {
+//         case OS_MACOS:
+//         case OS_IOS:
+//             IS_MAC = true;
+//             break;
+//         case OS_WINDOWS:
+//         case OS_LINUX:
+//             IS_MAC = false;
+//             break;
+//         case OS_UNSURE:
+//             break;
+//     }
+//     return true;
+// }
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     static bool ctrl_pressed = false;
+//     static bool alt_pressed = false;
+
+//     switch (keycode) {
+//         case KC_LCTL:
+//             ctrl_pressed = record->event.pressed;
+//             return true; // 允许 LCTRL 正常发送
+//         case KC_LALT:
+//             alt_pressed = record->event.pressed;
+//             return true; // 允许 LALT 正常发送
+//         case KC_Z:
+//             if (IS_MAC && ctrl_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_Z)); // 发送 LGUI + Z（Cmd+Z）
+//                 return false;       // 阻止默认的 Z 键事件
+//             }
+//             break;
+//         case KC_X:
+//             if (IS_MAC && ctrl_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_X)); // 发送 LGUI + X（Cmd+X）
+//                 return false;       // 阻止默认的 X 键事件
+//             }
+//             break;
+//         case KC_C:
+//             if (IS_MAC && ctrl_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_C)); // 发送 LGUI + C（Cmd+C）
+//                 return false;       // 阻止默认的 C 键事件
+//             }
+//             break;
+//         case KC_V:
+//             if (IS_MAC && ctrl_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_V)); // 发送 LGUI + V（Cmd+V）
+//                 return false;       // 阻止默认的 V 键事件
+//             }
+//             break;
+//         case KC_TAB:
+//             if (IS_MAC && alt_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_TAB)); // 发送 LGUI + TAB（Cmd+TAB）
+//                 return false;       // 阻止默认的 TAB 键事件
+//             }
+//             break;
+//         case KC_A:
+//             if (IS_MAC && ctrl_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_A)); // 发送 LGUI + A（Cmd+A）
+//                 return false;       // 阻止默认的 A 键事件
+//             }
+//             break;
+//         case KC_S:
+//             if (IS_MAC && ctrl_pressed && record->event.pressed) {
+//                 tap_code16(LCMD(KC_S)); // 发送 LGUI + S（Cmd+S）
+//                 return false;       // 阻止默认的 S 键事件
+//             }
+//             break;
+//     }
+//     return true;
+// }
